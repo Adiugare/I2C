@@ -16,7 +16,6 @@ File Structure
 - Design Source:- two_wire_i2c.v: Verilog code for the I²C master.
 - Simulation Source:- two_wire_i2c_tb.v: Testbench for simulating and validating the I²C master design.
 
-
 Verilog Modules
 I²C Master Module (two_wire_i2c)
 This module controls the two-wire communication:
