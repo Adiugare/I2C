@@ -1,0 +1,64 @@
+I²C Protocol Implementation
+
+Overview
+This project implements a two-wire I²C (Inter-Integrated Circuit) protocol master using Verilog HDL. The design includes:
+- I²C Master Module: Implements the state machine for start condition, data transmission, and stop condition.
+- Testbench: Simulates the behavior of the I²C master to validate functionality.
+
+Features
+- Two-Wire Communication:- Serial Clock Line (SCL): Synchronizes data transfer.
+- Serial Data Line (SDA): Transmits data.
+
+- Supports 8-bit data transmission.
+- Implements start and stop conditions according to I²C protocol specifications.
+
+File Structure
+- Design Source:- two_wire_i2c.v: Verilog code for the I²C master.
+- Simulation Source:- two_wire_i2c_tb.v: Testbench for simulating and validating the I²C master design.
+
+
+Verilog Modules
+I²C Master Module (two_wire_i2c)
+This module controls the two-wire communication:
+- Inputs:- clk: System clock.
+- reset: Resets the state machine.
+- start: Begins the I²C communication.
+- data_in: 8-bit data to be transmitted.
+- Outputs:- scl: Serial Clock Line.
+- sda: Serial Data Line (bidirectional).
+
+State Machine Workflow
+- Idle State: Waits for the start signal.
+- Start Condition: Pulls scl low and prepares for transmission.
+- Data Transmission: Sends each bit of data_in sequentially via sda, synchronized with scl.
+- Stop Condition: Ends communication by returning scl and sda to their default states.
+
+Testbench (two_wire_i2c_tb)
+The testbench generates input stimuli and validates the output:
+- Clock Generation: Produces a clock signal with a 10 ns period.
+- Reset and Start Signals: Initializes and triggers the I²C communication.
+- Data Input: Provides an 8-bit data frame (data_in) for testing.
+
+Simulation Results
+During simulation:
+- Reset Phase: Initializes the system, ensuring all signals are set to their default values.
+- Start Condition: scl is pulled low while sda transitions.
+- Data Transmission: Each bit of data_in appears sequentially on sda, synchronized with scl.
+- Stop Condition: Returns scl and sda to their idle states.
+
+How to Run the Project
+- Open the project in Xilinx Vivado.
+- Add two_wire_i2c.v as the design source and two_wire_i2c_tb.v as the simulation source.
+- Run Behavioral Simulation from the Flow Navigator.
+- Analyze the waveforms for clk, scl, sda, and other signals.
+
+Example Waveform
+The following signals are observed:
+- Clock (clk): A continuous square wave.
+- Reset (reset): Initializes the system.
+- Start (start): Triggers the communication.
+- Serial Clock (scl): Synchronizes data transmission.
+- Serial Data (sda): Transmits bits of data_in.
+
+
+
